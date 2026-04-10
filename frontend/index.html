@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusBites</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <h1><a href="index.html" class="brand-link">CampusBites</a></h1>
+    <div id="nav-right">
+        <button class="login-btn" onclick="window.location.href='login.html'">Login</button>
+        <button class="signup-btn" onclick="window.location.href='signup.html'">Sign Up</button>
+    </div>
+</header>
+
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search food or shops...">
+</div>
+<div id="searchResults" class="search-results"></div>
+
+<div class="filters">
+    <select id="priceFilter">
+        <option value="">All Prices</option>
+        <option value="low">Below &#8377;100</option>
+        <option value="mid">&#8377;100 - &#8377;200</option>
+        <option value="high">Above &#8377;200</option>
+    </select>
+
+    <select id="typeFilter">
+        <option value="">All</option>
+        <option value="veg">Veg</option>
+        <option value="nonveg">Non-Veg</option>
+    </select>
+</div>
+
+<div id="recommendationSection">
+    <h2>&#128293; Recommended for you</h2>
+    <p style="color: gray; font-size: 14px;">Top-rated and most trusted food spots</p>
+    <div id="recommendations" class="shop-container"></div>
+</div>
+
+<h2 id="allShopsHeading">&#127869;&#65039; Shops</h2>
+<div id="shopContainer" class="shop-container"></div>
+
+<div id="favoritesSection" style="display:none;">
+    <h2>&#10084;&#65039; Your Favorites</h2>
+    <div class="favorites-actions">
+        <button type="button" onclick="goBack()">&#11013; Back</button>
+    </div>
+    <div id="favoritesContainer" class="shop-container"></div>
+</div>
+
+<button class="ai-btn">&#129302; Ask AI</button>
+
+<div class="signup-card">
+    <h3>Unlock more features &#128640;</h3>
+    <p>Save favorites, get AI recommendations & more</p>
+    <button onclick="window.location.href='signup.html'">Sign Up</button>
+</div>
+
+<!-- Menu Modal -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span onclick="closeModal()">&#10006;</span>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+<!-- Review Modal -->
+<div id="reviewModal" class="modal">
+    <div class="modal-content">
+        <span onclick="closeModal()">&#10006;</span>
+        <h3>Add Review</h3>
+
+        <textarea id="reviewText" placeholder="Write your review..."></textarea>
+
+        <br><br>
+
+        <select id="rating">
+            <option value="">Select Rating</option>
+            <option value="1">&#11088; 1</option>
+            <option value="2">&#11088; 2</option>
+            <option value="3">&#11088; 3</option>
+            <option value="4">&#11088; 4</option>
+            <option value="5">&#11088; 5</option>
+        </select>
+
+        <br><br>
+
+        <button onclick="submitReview(event)">Submit</button>
+    </div>
+</div>
+
+<div id="passwordModal" class="modal" style="display:none;">
+    <div class="modal-content password-modal-content">
+        <button type="button" class="modal-close-btn" onclick="closePassword()">&#10006;</button>
+        <div class="password-modal-header">
+            <div class="password-modal-badge">&#9881;</div>
+            <h3>Change Password</h3>
+            <p>Update your password to keep your CampusBites account secure.</p>
+        </div>
+        <div class="password-field-group">
+            <label for="oldPass">Current Password</label>
+            <input type="password" id="oldPass" placeholder="Enter current password">
+        </div>
+        <div class="password-field-group">
+            <label for="newPass">New Password</label>
+            <input type="password" id="newPass" placeholder="Create a new password">
+        </div>
+        <div class="password-field-group">
+            <label for="confirmPass">Confirm Password</label>
+            <input type="password" id="confirmPass" placeholder="Re-enter new password">
+        </div>
+        <div class="password-actions">
+            <button type="button" class="review-btn" onclick="changePassword()">Submit</button>
+            <button type="button" class="menu-btn" onclick="closePassword()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script defer src="script.js"></script>
+
+</body>
+</html>

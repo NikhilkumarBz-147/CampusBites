@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - CampusBites</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="login-shell">
+    <div class="login-copy">
+        <p class="eyebrow">CampusBites Admin</p>
+        <h1>Welcome back.</h1>
+        <p>Sign in to manage shops, curate menus, and keep the dining experience polished across campus.</p>
+    </div>
+
+    <div class="login-card">
+        <div class="card-header">
+            <h2>Admin Access</h2>
+            <p>Only authorized administrators can enter.</p>
+        </div>
+
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
+        </div>
+
+        <div class="input-group">
+            <label for="password">Password</label>
+            <div class="password-box">
+                <input type="password" id="password" placeholder="Enter your password">
+                <button type="button" id="eye" class="eye-btn" onclick="togglePassword()">Show</button>
+            </div>
+        </div>
+
+        <button class="login-btn" onclick="login()">Login</button>
+        <p class="hint">Protected workspace for CampusBites operations.</p>
+    </div>
+</div>
+
+<script src="login.js"></script>
+
+</body>
+</html>

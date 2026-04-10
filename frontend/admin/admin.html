@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - CampusBites</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="admin-shell">
+    <header class="admin-header">
+        <div>
+            <p class="eyebrow">CampusBites Admin</p>
+            <h1>Control Center</h1>
+            <p class="header-copy">Manage shops, menu items, and storefront quality from one polished workspace.</p>
+        </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </header>
+
+    <section class="stats-grid">
+        <article class="stat-card">
+            <span class="stat-label">Total Shops</span>
+            <strong id="totalShops">0</strong>
+        </article>
+        <article class="stat-card">
+            <span class="stat-label">Veg Shops</span>
+            <strong id="vegShops">0</strong>
+        </article>
+        <article class="stat-card">
+            <span class="stat-label">Non-Veg Shops</span>
+            <strong id="nonVegShops">0</strong>
+        </article>
+        <article class="stat-card">
+            <span class="stat-label">Average Rating</span>
+            <strong id="averageRating">0.0</strong>
+        </article>
+    </section>
+
+    <section class="admin-grid">
+        <div class="admin-card admin-form-card">
+            <div class="section-heading">
+                <p class="eyebrow">New Shop</p>
+                <h2>Add Shop</h2>
+                <p>Launch a new food spot with a clean cover image and category.</p>
+            </div>
+
+            <div class="form-highlight">
+                <div class="form-highlight-icon">+</div>
+                <div>
+                    <strong>Storefront Setup</strong>
+                    <p>Add a name, choose the shop type, and attach a strong food image to keep the listing premium.</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Shop Name</label>
+                <input type="text" id="name" placeholder="e.g. Urban Dosa Bar">
+            </div>
+
+            <div class="form-group">
+                <label for="type">Category</label>
+                <select id="type">
+                    <option value="">Select Type</option>
+                    <option value="veg">Veg</option>
+                    <option value="nonveg">Non-Veg</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="image_url">Shop Image</label>
+                <input type="text" id="image_url" placeholder="https://example.com/cover.jpg">
+                <div class="upload-divider">
+                    <span>OR</span>
+                </div>
+                <label for="image_file" class="file-upload-box">
+                    <span class="file-upload-icon">&#8682;</span>
+                    <span class="file-upload-title">Upload from device</span>
+                    <span class="file-upload-copy">PNG, JPG, or JPEG image for the shop cover</span>
+                    <input type="file" id="image_file" accept="image/*">
+                </label>
+            </div>
+
+            <button type="button" class="primary-btn" onclick="addShop()">Add Shop</button>
+        </div>
+
+        <div class="admin-card admin-overview-card">
+            <div class="section-heading">
+                <p class="eyebrow">Overview</p>
+                <h2>Shop Directory</h2>
+                <p>Search, edit, and maintain the storefront experience.</p>
+            </div>
+
+            <div class="toolbar">
+                <input type="text" id="shopSearch" placeholder="Search by shop name...">
+                <select id="shopTypeFilter">
+                    <option value="">All Types</option>
+                    <option value="veg">Veg</option>
+                    <option value="nonveg">Non-Veg</option>
+                </select>
+            </div>
+
+            <div class="admin-table-wrapper">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Shop</th>
+                            <th>Type</th>
+                            <th>Rating</th>
+                            <th>Image</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="shopTable"></tbody>
+                </table>
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <h3>No shops found</h3>
+                    <p>Try changing the search or filter to find what you need.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<div id="menuModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div>
+                <p class="eyebrow">Menu Manager</p>
+                <h3 id="menuTitle">Menu</h3>
+            </div>
+            <button type="button" class="icon-btn" onclick="closeMenu()">&times;</button>
+        </div>
+
+        <div id="menuList" class="menu-list"></div>
+
+        <div class="menu-form">
+            <h4>Add Item</h4>
+            <div class="form-group">
+                <label for="itemCategory">Category</label>
+                <select id="itemCategory">
+                    <option value="">Select category</option>
+                    <option value="snacks">Snacks</option>
+                    <option value="main-course">Main Course</option>
+                    <option value="beverages">Beverages</option>
+                    <option value="desserts">Desserts</option>
+                    <option value="combos">Combos</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="itemName">Item Name</label>
+                <input type="text" id="itemName" placeholder="e.g. Masala Maggi">
+            </div>
+            <div class="form-group">
+                <label for="itemPrice">Price</label>
+                <input type="number" id="itemPrice" placeholder="e.g. 120">
+            </div>
+            <button type="button" class="primary-btn" onclick="addMenuItem()">Add Item</button>
+        </div>
+    </div>
+</div>
+
+<script src="admin.js"></script>
+
+</body>
+</html>

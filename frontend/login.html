@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="card">
+    <h2>Login</h2>
+
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+</div>
+
+<script>
+function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const apiBaseUrl = `${window.location.protocol}//${window.location.hostname}:5000`;
+
+    fetch(`${apiBaseUrl}/user/login`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+    })
+    .then(async (res) => {
+        const contentType = res.headers.get("content-type") || "";
+        const data = contentType.includes("application/json")
+            ? await res.json()
+            : await res.text();
+
+        if (!res.ok) {
+            throw new Error(typeof data === "string" ? data : data.message || "Login failed");
+        }
+
+        return data;
+    })
+    .then(data => {
+        if (data.message === "Login successful") {
+            localStorage.setItem("user", JSON.stringify(data.user));
+            localStorage.setItem("user_id", String(data.user.id));
+            alert("Login success");
+            window.location.href = "index.html";
+        } else {
+            alert(typeof data === "string" ? data : "Login failed");
+        }
+    })
+    .catch((error) => {
+        alert(error.message || "Unable to login right now");
+    });
+}
+</script>
+
+</body>
+</html>
